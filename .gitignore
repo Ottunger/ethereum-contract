@@ -2,3 +2,5 @@ chain
 .idea
 build
 
+**/*.abi
+**/*.bin
