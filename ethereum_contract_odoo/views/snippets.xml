@@ -2,7 +2,21 @@
 <odoo>
     <data>
 
-
+        <template id="snippet_app" name="ETH Will">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>ONG</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Amount per Hour</th>
+                        <th>Hours per Week</th>
+                    </tr>
+                </thead>
+                <tbody/>
+            </table>
+        </template>
 
     </data>
 </odoo>
