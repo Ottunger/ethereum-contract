@@ -7,7 +7,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
     var core = require('web.core');
     var _t = core._t;
 
-    var contract = window.contract; //truffle-contract
+    var contract = window.TruffleContract; //truffle-contract
     var Web3 = window.Web3; //web3
     var account;
     var wills = [];
@@ -28,7 +28,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
     });
 
     for(var i = 0; i < odoo.ethereum_contracts_json.length; i++) {
-        wills.append(contract(JSON.parse(odoo.ethereum_contracts_json[i])));
+        wills.push(contract(JSON.parse(odoo.ethereum_contracts_json[i])));
     }
     for(var i = 0; i < wills.length; i++) {
         wills[i].setProvider(web3.currentProvider);
@@ -57,11 +57,17 @@ odoo.define('ethereum_contract_odoo', function(require) {
                 } else {
                     //Can propose
                     $('#' + instance.address).on('click', function() {
-                        instance.propose({from: account, gas: 500000});
+                        $tr = $(this).closest('tr');
+                        instance.propose(
+                            new Date($tr.find('input')[0].val()).getTime(),
+                            new Date($tr.find('input')[1].val()).getTime(),
+                            $tr.find('input')[2].val(),
+                            $tr.find('input')[3].val(),
+                            {from: account, gas: 500000});
                     });
                 }
             });
-            instance.onSigned({}, {fromBlock: 0; toBlock: 'latest'}).watch(function(err, event) {
+            instance.onSigned({}, {fromBlock: 0, toBlock: 'latest'}).watch(function(err, event) {
                 alert(event);
             });
         });

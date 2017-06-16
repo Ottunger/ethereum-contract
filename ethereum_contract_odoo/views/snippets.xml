@@ -3,19 +3,21 @@
     <data>
 
         <template id="snippet_app" name="ETH Will">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>ONG</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Amount per Hour</th>
-                        <th>Hours per Week</th>
-                    </tr>
-                </thead>
-                <tbody id="wills_body"/>
-            </table>
+            <section class="snippet_app">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>ONG</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Amount per Hour</th>
+                            <th>Hours per Week</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wills_body"/>
+                </table>
+            </section>
         </template>
 
     </data>

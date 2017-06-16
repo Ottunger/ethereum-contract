@@ -9,7 +9,7 @@
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/main.js"/>
                 <script type="text/javascript">
                     odoo.ethereum_contracts_json = [
-                        <t t-foreach="request.env['ethereum.will'].search()" t-as="json">'<t t-raw="json.value"/>', </t>
+                        <t t-foreach="request.env['ethereum.will'].search([])" t-as="json">'<t t-raw="json.value"/>', </t>
                     ];
                 </script>
             </xpath>
@@ -37,7 +37,7 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="listing_wills">
+        <record model="ir.actions.act_window" id="listing_wills_action">
             <field name="name">Listing Wills</field>
             <field name="res_model">ethereum.will</field>
             <field name="view_mode">tree,form</field>
@@ -49,7 +49,7 @@
         <menuitem name="Wills" id="wills" parent="ethereum"/>
         <!-- actions -->
         <menuitem name="Listing wills" id="listing_wills" parent="wills"
-                  action="listing_wills"/>
+                  action="listing_wills_action"/>
 
     </data>
 </odoo>
