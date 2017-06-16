@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <template id="eth_assets_frontend" inherit_id="website.assets_frontend" name="assets frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/main.js"/>
+            </xpath>
+        </template>
+
+        <template id="eth_snippets" inherit_id="website.snippets" name="ETH snippets bar">
+            <xpath expr="//div[@id='snippet_feature']/div[@class='o_panel_body']" position="inside">
+                <t t-snippet="ethereum_contract_odoo.snippet_app"
+                    t-thumbnail="/ethereum_contract_odoo/static/images/snippet.png"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
