@@ -1,6 +1,8 @@
 pragma solidity ^0.4.2;
 
 contract Will {
+    event onSigned();
+
     struct Config{
         uint256 startDate;
         uint256 endDate;
@@ -55,6 +57,7 @@ contract Will {
         isPending = false;
         running = pending;
         resetSig();
+        onSigned();
     }
 
     function resetSig() private {
@@ -88,6 +91,12 @@ contract Will {
         lastProposal = now;
         resetSig();
         pending = Config(startDate, endDate, amountHour, hourWeek);
+    }
+
+    function getAllInfo() returns (uint256, uint256, uint8, uint8, uint256, uint256, uint8, uint8, address, address, bool, uint256) {
+        return (running.startDate, running.endDate, running.amountHour, running.hourWeek,
+                pending.startDate, pending.endDate, pending.amountHour, pending.hourWeek,
+                subject, ong, isPending, lastProposal);
     }
 
 }
