@@ -10,7 +10,8 @@ Track contracts on website
     'depends': ['website'],
     'data': [
         'views/snippets.xml',
-        'views/templates.xml'
+        'views/templates.xml',
+        'security/ir.model.access.csv'
     ],
     'installable': True,
     'application': False,

@@ -93,7 +93,7 @@ contract Will {
         pending = Config(startDate, endDate, amountHour, hourWeek);
     }
 
-    function getAllInfo() returns (uint256, uint256, uint8, uint8, uint256, uint256, uint8, uint8, address, address, bool, uint256) {
+    function getAllInfo() constant returns (uint256, uint256, uint8, uint8, uint256, uint256, uint8, uint8, address, address, bool, uint256) {
         return (running.startDate, running.endDate, running.amountHour, running.hourWeek,
                 pending.startDate, pending.endDate, pending.amountHour, pending.hourWeek,
                 subject, ong, isPending, lastProposal);

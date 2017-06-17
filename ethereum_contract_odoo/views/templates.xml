@@ -9,7 +9,13 @@
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/main.js"/>
                 <script type="text/javascript">
                     odoo.ethereum_contracts_json = [
-                        <t t-foreach="request.env['ethereum.will'].search([])" t-as="json">'<t t-raw="json.value"/>', </t>
+                        <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.value.replace('\n', '').replace('\r', '')"/>', </t>
+                    ];
+                    odoo.ethereum_contracts_addr = [
+                        <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.addr"/>', </t>
+                    ];
+                    odoo.ethereum_contracts_id = [
+                    <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.id"/>', </t>
                     ];
                 </script>
             </xpath>
@@ -30,6 +36,8 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="addr"/>
+                            <field name="type"/>
                             <field name="value"/>
                         </group>
                     </sheet>

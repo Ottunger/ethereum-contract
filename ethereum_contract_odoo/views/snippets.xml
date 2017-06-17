@@ -4,7 +4,11 @@
 
         <template id="snippet_app" name="ETH Will">
             <section class="snippet_app">
-                <table class="table table-striped">
+                <style style="display: none;">
+                    td {overflow-x: auto;}
+                </style>
+                <p id="error_len" style="display: none;">You must define a Will contract type before, to have its JSON known.</p>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Subject</th>
@@ -15,7 +19,14 @@
                             <th>Hours per Week</th>
                         </tr>
                     </thead>
-                    <tbody id="wills_body"/>
+                    <tbody id="wills_body">
+                        <tr class="warning">
+                            <td><input type="text" id="subject"/></td><td><input type="text" id="ong"/></td>
+                            <td><input type="date" id="from_date"/></td><td><input type="date" id="end_date"/></td>
+                            <td><input type="number" min="0" id="amt_hour"/></td><td><input type="number" min="0" id="hour_week"/></td>
+                        </tr>
+                        <tr class="warning"><td/><td><button id="creator_btn" class="btn">Create</button></td><td colspan="4"/></tr>
+                    </tbody>
                 </table>
             </section>
         </template>

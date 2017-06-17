@@ -6,3 +6,7 @@ Npm install : solc, truffle
 
 In order to install truffle, you might want to install it locally and point it to bin, ie:
 sudo ln -s "$(readlink -f ~/.npm/node_modules/.bin/truffle)" /usr/bin/truffle
+
+Create personal account:
+geth account new
+And copy said keystore (geth acocunt list) to personal chain here

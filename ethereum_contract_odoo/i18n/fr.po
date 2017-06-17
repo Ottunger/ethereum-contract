@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ethereum_contract_odoo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0-20170616\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-17 05:10+0000\n"
+"PO-Revision-Date: 2017-06-17 05:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.snippet_app
+msgid "Amount per Hour"
+msgstr "Montant par Heure"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_display_name
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.snippet_app
+msgid "End Date"
+msgstr "Date de Fin"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.menu,name:ethereum_contract_odoo.ethereum
+msgid "Ethereum"
+msgstr "Ethereum"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.snippet_app
+msgid "Hours per Week"
+msgstr "Heures par Semaine"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_id
+msgid "ID"
+msgstr "ID"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_value
+msgid "JSON descriptor of contract"
+msgstr "Descriptif JSON du contrat"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: ethereum_contract_odoo
+#: model:ir.actions.act_window,name:ethereum_contract_odoo.listing_wills_action
+msgid "Listing Wills"
+msgstr "Liste des Volontés"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.menu,name:ethereum_contract_odoo.listing_wills
+msgid "Listing wills"
+msgstr "Liste des volontés"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.snippet_app
+msgid "ONG"
+msgstr "ONG"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.snippet_app
+msgid "Start Date"
+msgstr "Date de Début"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.snippet_app
+msgid "Subject"
+msgstr "Sujet"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model.fields,field_description:ethereum_contract_odoo.field_ethereum_will_name
+msgid "Will name"
+msgstr "Volonté"
+
+#. module: ethereum_contract_odoo
+#: model:ir.ui.menu,name:ethereum_contract_odoo.wills
+#: model:ir.ui.view,arch_db:ethereum_contract_odoo.will_form_view
+msgid "Wills"
+msgstr "Volontés"
+
+#. module: ethereum_contract_odoo
+#: model:ir.model,name:ethereum_contract_odoo.model_ethereum_will
+msgid "ethereum.will"
+msgstr "ethereum.will"
+
