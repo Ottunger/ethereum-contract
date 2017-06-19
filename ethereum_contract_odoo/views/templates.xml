@@ -6,7 +6,7 @@
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/web3.js"/>
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/truffle-contract.js"/>
-                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/main.js"/>
+                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/will.js"/>
                 <script type="text/javascript">
                     odoo.ethereum_contracts_json = [
                         <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.value.replace('\n', '').replace('\r', '')"/>', </t>
