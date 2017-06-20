@@ -4,3 +4,9 @@ build
 
 **/*.abi
 **/*.bin
+
+node_wrapper/will.js
+node_wrapper/all.js
+node_wrapper/utils.js
+
+node_wrapper/node_modules

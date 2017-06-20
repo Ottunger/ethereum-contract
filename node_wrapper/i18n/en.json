@@ -1,0 +1,19 @@
+{
+  "client.notFound": "Client error: Not found",
+  "client.auth": "Client error: Bad realm for accessing this ressource",
+  "client.missing": "Client error: Mandatory field missing",
+  "client.noUser": "Client error: No such user",
+  "client.noData": "Client error: No such data",
+  "client.tooSoon": "Client error: Request sent twice too fast",
+  "client.badState": "Client error: User in wrong state for this action",
+  "client.userExists": "Client error: User already exists",
+  "client.puzzle": "Client error: Puzzle reference is corrupted",
+  "client.captcha": "Client error: No robot here!",
+  "client.burst": "Client error: Rate limiting exceeded",
+  "client.paying": "Client error: This feature requires a priori payment",
+  "internal.db": "Internal error: No database connection",
+  "internal.overload": "Internal error: Retry later",
+  "internal.keys": "Internal error: Keys are corrupted",
+  "internal.fast": "Internal error: Cannot use so much triggers",
+  "external.down": "Global error: External service down"
+}

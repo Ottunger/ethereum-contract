@@ -1,0 +1,33 @@
+{
+  "name": "node_wrapper",
+  "version": "0.0.1",
+  "description": "Wrapper in NodeJS for GETH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build_will": "node_modules/.bin/tsc --removeComments will.ts && echo ok || echo not ok",
+    "build_all": "node_modules/.bin/tsc --removeComments all.ts && echo ok || echo not ok",
+    "build_utils": "node_modules/.bin/tsc --removeComments utils.ts && echo ok || echo not ok",
+    "build": "npm run build_will && npm run build_all && npm run build_utils",
+    "debug": "node index.js localhost",
+    "production": "node index.js production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gregoire@gitlab.lycoops.be/gregoire/ethereum-contract.git"
+  },
+  "author": "Mate It Right",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "js-sha256": "^0.5.0",
+    "limiter": "^1.1.0",
+    "node-forge": "^0.7.1",
+    "passport": "^0.3.2",
+    "querystring": "^0.2.0",
+    "typescript": "^2.3.4",
+    "typescript-require": "^0.2.9-1"
+  }
+}

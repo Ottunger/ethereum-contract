@@ -18,7 +18,7 @@ class Website(models.Model):
 
     @api.model
     def _node(self, path, params={}):
-        resp = requests.post(url='https://' + node_host + ':' + str(node_port) + '/' + path, json=params, cert=(self.certificate, self.private_key))
+        resp = requests.post(url='https://' + node_host + ':' + str(node_port) + '/api/v1/' + path, json=params, cert=(self.certificate, self.private_key))
         return resp.json()
 
     @api.model

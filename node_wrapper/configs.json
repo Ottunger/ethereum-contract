@@ -1,0 +1,18 @@
+{
+  "localhost": {
+    "port": 5443,
+    "localhost": "localhost",
+    "debug": true,
+    "https": true,
+    "keypem": "/home/gregoire/cert.key",
+    "certpem": "/home/gregoire/cert.pem"
+  },
+  "production": {
+    "port": 8080,
+    "localhost": "api-blockchain.casalta.com",
+    "debug": false,
+    "https": false,
+    "keypem": "/home/gregoire/cert.key",
+    "certpem": "/home/gregoire/cert.pem"
+  }
+}
