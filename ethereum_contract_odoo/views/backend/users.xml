@@ -4,10 +4,10 @@
 
         <record model="ir.ui.view" id="partner_form">
             <field name="name">partner_form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@name='internal_notes']" position="after">
+                <xpath expr="//page[@name='access_rights']" position="before">
                     <page string="Ethereum management" name="ethereum">
                         <group string="Account">
                             <field name="eth_account"/>

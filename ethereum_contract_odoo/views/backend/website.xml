@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
                     <group string="Ethereum configuration">
+                        <field name="eth_account"/>
                         <field name="node_host"/>
                         <field name="node_port"/>
                         <field name="private_key"/>

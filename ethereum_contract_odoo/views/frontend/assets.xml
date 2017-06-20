@@ -4,8 +4,6 @@
 
         <template id="eth_assets_frontend" inherit_id="website.assets_frontend" name="assets frontend">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/web3.js"/>
-                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/truffle-contract.js"/>
                 <script type="text/javascript">
                     odoo.ethereum_contracts_ids = [
                         <t t-foreach="request.env['ethereum.contract.instance'].search([])" t-as="json">'<t t-raw="json.id"/>', </t>

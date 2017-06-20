@@ -21,7 +21,8 @@
                     </thead>
                     <tbody id="wills_body">
                         <tr class="warning">
-                            <td><input type="text" id="subject"/></td><td><input type="text" id="ong"/></td>
+                            <td><input type="text" id="subject"/></td>
+                            <td><input type="text" id="ong" t-att-value="request.website.eth_account" readonly="readonly"/></td>
                             <td><input type="date" id="from_date"/></td><td><input type="date" id="end_date"/></td>
                             <td><input type="number" min="0" id="amt_hour"/></td><td><input type="number" min="0" id="hour_week"/></td>
                         </tr>

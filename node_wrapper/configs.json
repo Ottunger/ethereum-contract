@@ -1,6 +1,6 @@
 {
   "localhost": {
-    "port": 5443,
+    "port": 8443,
     "localhost": "localhost",
     "debug": true,
     "https": true,

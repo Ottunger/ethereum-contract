@@ -35,6 +35,7 @@ if(utils.DEBUG)
  * @param {Function} callback Callback.
  */
 function connect(callback) {
+    rpem = pki.certificateFromPem(fs.readFileSync(__dirname + '/ca-cert.pem'));
     all.managerInit(config);
     will.managerInit(config);
     utils.prepareRL();
@@ -128,12 +129,15 @@ connect(function(e) {
 
     //API AUTH DECLARATIONS
     app.post('/api/v:version/create_account', pauth);
+    app.post('/api/v:version/will/new', pauth);
     app.post('/api/v:version/will/execute', pauth);
     //API POST CHECKS
     app.post('/api/v:version/create_account', utils.checkBody([]));
+    app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'arg_array']));
     app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'contract_address', 'method', 'arg_array', 'transform']));
     //API ROUTES
     app.post('/api/v:version/create_account', all.createAccount);
+    app.post('/api/v:version/will/new', will.creator);
     app.post('/api/v:version/will/execute', will.executor);
 
     //Error route

@@ -9,11 +9,11 @@ Track contracts on website
     'website': "https://mateitright.be/",
     'depends': ['website', 'sale', 'crm'],
     'data': [
-        'views/backend/partner.xml',
+        'views/backend/users.xml',
         'views/backend/website.xml',
         'views/backend/contract.xml',
         'views/frontend/snippets_will.xml',
-        'views/frontend/templates.xml',
+        'views/frontend/assets.xml',
         'security/ir.model.access.csv'
     ],
     'installable': True,

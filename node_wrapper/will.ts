@@ -22,6 +22,24 @@ var config;
 export function managerInit(c: any) {
     config = c;
 }
+
+/**
+ * Creator on will.
+ * @function creator
+ * @public
+ * @param {Request} req The request.
+ * @param {Response} res The response.
+ */
+export function creator(req, res) {
+    var will = TC(req.contract);
+    will.setProvider(all.web3.currentProvider);
+    will.new(...req.arg_array).then(function(response) {
+        res.type('application/json').status(200).json(response);
+    }, function(error) {
+        res.type('application/json').status(600).json(error);
+    });
+}
+
 /**
  * Executor on will.
  * @function executor
@@ -50,4 +68,3 @@ export function executor(req, res) {
         res.type('application/json').status(600).json(error);
     });
 }
-

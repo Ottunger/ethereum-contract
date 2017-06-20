@@ -56,7 +56,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
                 true,
                 $('#subject').val(),
                 $('#ong').val(),
-                new Date($('#from_date')).getTime(),
+                new Date($('#from_date').val()).getTime(),
                 new Date($('#end_date').val()).getTime(),
                 $('#amt_hour').val(),
                 $('#hour_week').val(),
