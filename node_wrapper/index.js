@@ -128,10 +128,13 @@ connect(function(e) {
 
     //API AUTH DECLARATIONS
     app.post('/api/v:version/create_account', pauth);
+    app.post('/api/v:version/will/execute', pauth);
     //API POST CHECKS
     app.post('/api/v:version/create_account', utils.checkBody([]));
+    app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'contract_address', 'method', 'arg_array']));
     //API ROUTES
     app.post('/api/v:version/create_account', all.createAccount);
+    app.post('/api/v:version/will/execute', will.executor);
 
     //Error route
     app.use(function(req, res) {
