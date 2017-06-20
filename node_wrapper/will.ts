@@ -34,10 +34,18 @@ export function executor(req, res) {
     will.setProvider(all.web3.currentProvider);
     will.at(req.contract_address).then(function(instance) {
         instance[req.method](...req.arg_array).then(function(response) {
-            res.type('application/json').status(200).json(response);
+            res.type('application/json').status(200).json(response.map(function(arg, index) {
+                all.transform(arg, req.transform[index]);
+            }));
         }, function(error) {
             res.type('application/json').status(600).json(error);
         });
+
+        /* Pool of followed
+        instance.onSigned({}, {fromBlock: 0, toBlock: 'latest'}).watch(function(err, event) {
+            alert(event);
+        });
+        */
     }, function(error) {
         res.type('application/json').status(600).json(error);
     });

@@ -113,6 +113,6 @@ msgstr "Volontés"
 
 #. module: ethereum_contract_odoo
 #: model:ir.model,name:ethereum_contract_odoo.model_ethereum_will
-msgid "ethereum.will"
-msgstr "ethereum.will"
+msgid "ethereum.contract"
+msgstr "ethereum.contract"
 

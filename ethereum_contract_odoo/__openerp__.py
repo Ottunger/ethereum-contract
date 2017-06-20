@@ -11,8 +11,8 @@ Track contracts on website
     'data': [
         'views/backend/partner.xml',
         'views/backend/website.xml',
-        'views/backend/will.xml',
-        'views/frontend/snippets.xml',
+        'views/backend/contract.xml',
+        'views/frontend/snippets_will.xml',
         'views/frontend/templates.xml',
         'security/ir.model.access.csv'
     ],

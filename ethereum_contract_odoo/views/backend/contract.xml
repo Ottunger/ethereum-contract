@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="contract_form_view">
+            <field name="name">contract_form_view</field>
+            <field name="model">ethereum.contract</field>
+            <field name="arch" type="xml">
+                <form string="Contracts">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="addr_ids" widget="one2many_list"/>
+                            <field name="type"/>
+                            <field name="value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="contract_i_form_view">
+            <field name="name">contract_i_form_view</field>
+            <field name="model">ethereum.contract.instance</field>
+            <field name="arch" type="xml">
+                <form string="Instance">
+                    <sheet>
+                        <group>
+                            <field name="contract_id"/>
+                            <field name="addr"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="contract_i_tree_view">
+            <field name="name">contract_i_tree_view</field>
+            <field name="model">ethereum.contract.instance</field>
+            <field name="arch" type="xml">
+                <tree string="Instance">
+                    <field name="contract_id"/>
+                    <field name="addr"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="listing_contracts_action">
+            <field name="name">Listing Contracts</field>
+            <field name="res_model">ethereum.contract</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="listing_is_action">
+            <field name="name">Listing Instances</field>
+            <field name="res_model">ethereum.contract.instance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="listing_w_action">
+            <field name="name">Listing Websites</field>
+            <field name="res_model">website</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- top menu item -->
+        <menuitem name="Ethereum" id="ethereum"/>
+        <!-- menu categories -->
+        <menuitem name="Contracts" id="contracts" parent="ethereum"/>
+        <!-- actions -->
+        <menuitem name="Listing contracts" id="listing_contracts" parent="contracts"
+                  action="listing_contracts_action"/>
+        <menuitem name="Listing instances" id="listing_is" parent="contracts"
+                  action="listing_is_action"/>
+        <menuitem name="Listing websites" id="listing_w" parent="contracts"
+                  action="listing_w_action"/>
+
+    </data>
+</odoo>

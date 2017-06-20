@@ -131,7 +131,7 @@ connect(function(e) {
     app.post('/api/v:version/will/execute', pauth);
     //API POST CHECKS
     app.post('/api/v:version/create_account', utils.checkBody([]));
-    app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'contract_address', 'method', 'arg_array']));
+    app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'contract_address', 'method', 'arg_array', 'transform']));
     //API ROUTES
     app.post('/api/v:version/create_account', all.createAccount);
     app.post('/api/v:version/will/execute', will.executor);

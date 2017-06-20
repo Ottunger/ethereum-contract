@@ -1,3 +1,3 @@
-from . import will
+from . import contract
 from . import partner
 from . import website

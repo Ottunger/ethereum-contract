@@ -2,8 +2,8 @@
 <odoo>
     <data>
 
-        <template id="snippet_app" name="ETH Will">
-            <section class="snippet_app">
+        <template id="snippet_app_will" name="ETH Wills">
+            <section class="snippet_app_will">
                 <style style="display: none;">
                     td {overflow-x: auto;}
                 </style>
@@ -29,6 +29,18 @@
                     </tbody>
                 </table>
             </section>
+        </template>
+
+        <template id="snippet_json_will" name="ETH Single Will">
+            <tr><td><t t-raw="infos[8]"/></td><td><t t-raw="infos[9]"/></td><td><t t-raw="infos[0]"/></td><td><t t-raw="infos[1]"/></td>
+                <td><t t-raw="infos[2]"/></td><td><t t-raw="infos[3]"/></td></tr>
+            <tr><td>Last offer: <t t-raw="infos[11]"/></td><td>Mode:
+                    <button t-attf-class="btn {{ classname }}" t-att-data-id="instance.id"><t t-raw="'Sign' if infos[10] else 'Propose'"/></button>
+                </td>
+                <td><input type="date" t-att-value="infos[4]"/></td>
+                <td><input type="date" t-att-value="infos[5]"/></td>
+                <td><input type="number" min="0" t-att-value="infos[6]"/></td>
+                <td><input type="number" min="0" t-att-value="infos[7]"/></td></tr>
         </template>
 
     </data>

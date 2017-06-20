@@ -16,7 +16,7 @@
                     </group>
                 </xpath>
                 <xpath expr="//button[@name='noop']" position="before">
-                    <button type="object" name="run_node">Run NodeJS locally</button>
+                    <button type="object" name="run_node" string="Run Node"/>
                 </xpath>
             </field>
         </record>

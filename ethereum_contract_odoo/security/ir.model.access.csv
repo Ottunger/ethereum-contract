@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_eth_will,eth_will,model_ethereum_will,,1,0,0,0
-access_eth_will_ext,eth_will_ext,model_ethereum_will,base.group_system,1,1,1,1
+access_eth_contract,eth_contract,model_ethereum_contract,,1,0,0,0
+access_eth_contract_ext,eth_contract_ext,model_ethereum_contract,base.group_system,1,1,1,1
+access_eth_contract_instance,eth_contract_instance,model_ethereum_contract_instance,,1,0,0,0
+access_eth_contract_instance_ext,eth_contract_instance_ext,model_ethereum_contract_instance,base.group_system,1,1,1,1

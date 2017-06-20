@@ -9,7 +9,7 @@ class Partner(models.Model):
     eth_balance = fields.Float('Ether balance', readonly=True)
 
     def create(self, vals):
-        resp = self.env['website'].new_account()
+        resp = self.env['website'].browse(1).new_account()
         if not 'address' in resp:
             raise ValidationError('Cannot create account, NodeJS down?')
         vals.update({

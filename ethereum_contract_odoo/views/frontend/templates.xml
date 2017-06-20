@@ -7,15 +7,16 @@
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/web3.js"/>
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/truffle-contract.js"/>
                 <script type="text/javascript">
-                    odoo.ethereum_contracts_json = [
-                        <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.value.replace('\n', '').replace('\r', '')"/>', </t>
+                    odoo.ethereum_contracts_ids = [
+                        <t t-foreach="request.env['ethereum.contract.instance'].search([])" t-as="json">'<t t-raw="json.id"/>', </t>
                     ];
-                    odoo.ethereum_contracts_addr = [
-                        <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.addr"/>', </t>
+                    odoo.ethereum_contracts_types = [
+                        <t t-foreach="request.env['ethereum.contract.instance'].search([])" t-as="json">'<t t-raw="json.contract_id.type"/>', </t>
                     ];
-                    odoo.ethereum_contracts_id = [
-                    <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.id"/>', </t>
+                    odoo.ethereum_types = [
+                        <t t-foreach="request.env['ethereum.contract'].search([])" t-as="json">'<t t-raw="json.type"/>', </t>
                     ];
+                    odoo.ethereum_account = '<t t-raw="request.env.user.eth_account"/>';
                 </script>
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/will.js"/>
             </xpath>
@@ -23,8 +24,8 @@
 
         <template id="eth_snippets" inherit_id="website.snippets" name="ETH snippets bar">
             <xpath expr="//div[@id='snippet_feature']/div[@class='o_panel_body']" position="inside">
-                <t t-snippet="ethereum_contract_odoo.snippet_app"
-                    t-thumbnail="/ethereum_contract_odoo/static/images/snippet.png"/>
+                <t t-snippet="ethereum_contract_odoo.snippet_app_will"
+                   t-thumbnail="/ethereum_contract_odoo/static/images/snippet.png"/>
             </xpath>
         </template>
 
