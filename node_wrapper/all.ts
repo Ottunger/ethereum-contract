@@ -10,7 +10,8 @@ declare var Buffer: any
 declare var __dirname: any
 var Web3 = require('web3');
 var utils = require('./utils');
-var config, web3;
+export var web3;
+var config;
 
 /**
  * Sets up the mailer before use.

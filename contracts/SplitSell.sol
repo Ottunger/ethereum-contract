@@ -31,7 +31,7 @@ contract SplitSell {
     }
 
     //Constructor
-    function SplitSell(uint256 _buyValue) {
+    function SplitSell(uint32 _buyValue) {
         buyValue = _buyValue;
         supervisor = msg.sender;
     }

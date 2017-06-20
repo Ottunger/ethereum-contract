@@ -22,7 +22,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
                     }).then(function(data) {
                         window.location.reload();
                     });
-                    $(this).remove();
+                    $(this).attr('disabled', 'disabled');
                 });
             } else {
                 //Can propose
@@ -40,7 +40,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
                     }).then(function(data) {
                         window.location.reload();
                     });
-                    $(this).remove();
+                    $(this).attr('disabled', 'disabled');
                 });
             }
         });
@@ -67,7 +67,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
         }).then(function(data) {
             window.location.reload();
         });
-        $(this).remove();
+        $(this).attr('disabled', 'disabled');
     });
 
 });

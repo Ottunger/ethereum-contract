@@ -31,9 +31,9 @@ export function managerInit(c: any) {
  * @param {Response} res The response.
  */
 export function creator(req, res) {
-    var will = TC(req.contract);
+    var will = TC(req.body.contract);
     will.setProvider(all.web3.currentProvider);
-    will.new(...req.arg_array).then(function(response) {
+    will.new(...req.body.arg_array).then(function(response) {
         res.type('application/json').status(200).json(response);
     }, function(error) {
         res.type('application/json').status(600).json(error);
@@ -48,12 +48,12 @@ export function creator(req, res) {
  * @param {Response} res The response.
  */
 export function executor(req, res) {
-    var will = TC(req.contract);
+    var will = TC(req.body.contract);
     will.setProvider(all.web3.currentProvider);
-    will.at(req.contract_address).then(function(instance) {
-        instance[req.method](...req.arg_array).then(function(response) {
+    will.at(req.body.contract_address).then(function(instance) {
+        instance[req.body.method](...req.body.arg_array).then(function(response) {
             res.type('application/json').status(200).json(response.map(function(arg, index) {
-                all.transform(arg, req.transform[index]);
+                all.transform(arg, req.body.transform[index]);
             }));
         }, function(error) {
             res.type('application/json').status(600).json(error);

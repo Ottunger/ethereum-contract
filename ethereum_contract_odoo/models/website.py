@@ -29,7 +29,7 @@ class Website(models.Model):
     @api.one
     def will_get(self, instance):
         return self._node('will/execute', {
-            'contract': instance.contract_id.value,
+            'contract': json.loads(instance.contract_id.value),
             'contract_address': instance.addr,
             'method': 'getAllInfo',
             'arg_array': [],
@@ -43,7 +43,7 @@ class Website(models.Model):
             'gas': 500000
         })
         return self._node('will/execute', {
-            'contract': instance.contract_id.value,
+            'contract': json.loads(instance.contract_id.value),
             'contract_address': instance.addr,
             'method': 'propose',
             'arg_array': arg_array,
@@ -53,7 +53,7 @@ class Website(models.Model):
     @api.one
     def will_sign(self, instance):
         return self._node('will/execute', {
-            'contract': instance.contract_id.value,
+            'contract': json.loads(instance.contract_id.value),
             'contract_address': instance.addr,
             'method': 'sign',
             'arg_array': [{
@@ -70,7 +70,7 @@ class Website(models.Model):
             'gas': 20000000
         })
         return self._node('will/new', {
-            'contract': contract.value,
+            'contract': json.loads(contract.value),
             'arg_array': arg_array
         })
         

@@ -54,8 +54,8 @@ contract SellMandate {
     }
 
     function resetSig() private {
-        subjectSig = false;
-        ongSig = false;
+        mandateeSig = false;
+        mandaterSig = false;
     }
 
     function sign() {
