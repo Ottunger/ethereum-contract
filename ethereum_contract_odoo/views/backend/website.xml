@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="website_config">
+            <field name="name">website_config</field>
+            <field name="model">website</field>
+            <field name="inherit_id" ref="website.view_website_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <group string="Ethereum configuration">
+                        <field name="node_host"/>
+                        <field name="node_port"/>
+                        <field name="private_key"/>
+                        <field name="certificate"/>
+                    </group>
+                </xpath>
+                <xpath expr="//button[@name='noop']" position="before">
+                    <button type="object" name="run_node">Run NodeJS locally</button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

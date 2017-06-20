@@ -6,7 +6,6 @@
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/web3.js"/>
                 <script type="text/javascript" src="/ethereum_contract_odoo/static/js/truffle-contract.js"/>
-                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/will.js"/>
                 <script type="text/javascript">
                     odoo.ethereum_contracts_json = [
                         <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.value.replace('\n', '').replace('\r', '')"/>', </t>
@@ -18,6 +17,7 @@
                     <t t-foreach="request.env['ethereum.will'].search([('type', '=', 'will')])" t-as="json">'<t t-raw="json.id"/>', </t>
                     ];
                 </script>
+                <script type="text/javascript" src="/ethereum_contract_odoo/static/js/will.js"/>
             </xpath>
         </template>
 
@@ -27,37 +27,6 @@
                     t-thumbnail="/ethereum_contract_odoo/static/images/snippet.png"/>
             </xpath>
         </template>
-
-        <record model="ir.ui.view" id="will_form_view">
-            <field name="name">will_form_view</field>
-            <field name="model">ethereum.will</field>
-            <field name="arch" type="xml">
-                <form string="Wills">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <field name="addr"/>
-                            <field name="type"/>
-                            <field name="value"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="listing_wills_action">
-            <field name="name">Listing Wills</field>
-            <field name="res_model">ethereum.will</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <!-- top menu item -->
-        <menuitem name="Ethereum" id="ethereum"/>
-        <!-- menu categories -->
-        <menuitem name="Wills" id="wills" parent="ethereum"/>
-        <!-- actions -->
-        <menuitem name="Listing wills" id="listing_wills" parent="wills"
-                  action="listing_wills_action"/>
 
     </data>
 </odoo>

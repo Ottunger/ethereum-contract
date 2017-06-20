@@ -7,10 +7,13 @@ Track contracts on website
     """,
     'author': 'Mathonet Grégoire',
     'website': "https://mateitright.be/",
-    'depends': ['website'],
+    'depends': ['website', 'sale', 'crm'],
     'data': [
-        'views/snippets.xml',
-        'views/templates.xml',
+        'views/backend/partner.xml',
+        'views/backend/website.xml',
+        'views/backend/will.xml',
+        'views/frontend/snippets.xml',
+        'views/frontend/templates.xml',
         'security/ir.model.access.csv'
     ],
     'installable': True,
