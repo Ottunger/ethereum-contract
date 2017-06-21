@@ -7,7 +7,7 @@ Allows for property management in backend
     """,
     'author': 'Mathonet Grégoire',
     'website': "https://mateitright.be/",
-    'depends': ['sale'],
+    'depends': ['ethereum_contract_odoo'],
     'data': [
         'security/ir.model.access.csv'
     ],

@@ -12,6 +12,7 @@ Track contracts on website
         'views/backend/users.xml',
         'views/backend/website.xml',
         'views/backend/contract.xml',
+        'views/backend/product.xml',
         'views/frontend/snippets_will.xml',
         'views/frontend/assets.xml',
         'security/ir.model.access.csv'
