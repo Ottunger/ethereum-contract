@@ -44,7 +44,7 @@ export function creator(req, res) {
                 return;
             req.body.arg_array = req.body.arg_array_2;
             req.body.contract_address = response.address;
-            executor(req.body).then(console.log, console.err);
+            executor(req, undefined);
         }, function(error) {
             res.type('application/json').status(600).json(error);
         });
@@ -67,8 +67,9 @@ export function executor(req, res) {
         instance[req.body.method](...req.body.arg_array).then(function(response) {
             if(!res)
                 return;
-            res.type('application/json').status(200).json(response.map(function(arg, index) {
-                return all.transform(arg, req.body.transform[index]);
+            res.type('application/json').status(200).json(response.tx?
+                {transactionHash : response.tx} : response.map(function(arg, index) {
+                    return all.transform(arg, req.body.transform[index]);
             }));
         }, function(error) {
             if(!res)

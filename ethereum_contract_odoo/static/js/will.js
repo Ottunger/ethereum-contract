@@ -23,7 +23,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
                         window.location.reload();
                     });
                     $(this).attr('disabled', 'disabled');
-                    setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 500);
+                    setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 20000);
                 });
             } else {
                 //Can propose
@@ -42,7 +42,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
                         window.location.reload();
                     });
                     $(this).attr('disabled', 'disabled');
-                    setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 500);
+                    setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 20000);
                 });
             }
         });
@@ -66,13 +66,12 @@ odoo.define('ethereum_contract_odoo', function(require) {
                 new Date($('#end_date').val()).getTime(),
                 parseInt($('#amt_hour').val()),
                 parseInt($('#hour_week').val())
-                //Controller will append from account
             ]
         }).then(function(data) {
             window.location.reload();
         });
         $(this).attr('disabled', 'disabled');
-        setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 500);
+        setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 20000);
     });
 
 });

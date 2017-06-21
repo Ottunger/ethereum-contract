@@ -38,10 +38,10 @@
             <tr><td>Last offer: <t t-raw="infos[11]"/></td><td>Mode:
                     <button t-attf-class="btn {{ classname }}" t-att-data-id="instance.id"><t t-raw="'Sign' if infos[10] else 'Propose'"/></button>
                 </td>
-                <td><input type="date" t-att-value="infos[4]"/></td>
-                <td><input type="date" t-att-value="infos[5]"/></td>
-                <td><input type="number" min="0" t-att-value="infos[6]"/></td>
-                <td><input type="number" min="0" t-att-value="infos[7]"/></td></tr>
+                <td><input type="date" t-att-value="infos[4]" t-att-readonly="infos[10]"/></td>
+                <td><input type="date" t-att-value="infos[5]" t-att-readonly="infos[10]"/></td>
+                <td><input type="number" min="0" t-att-value="infos[6]" t-att-readonly="infos[10]"/></td>
+                <td><input type="number" min="0" t-att-value="infos[7]" t-att-readonly="infos[10]"/></td></tr>
         </template>
 
     </data>

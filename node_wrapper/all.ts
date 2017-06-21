@@ -42,7 +42,7 @@ export function transform(arg: any, method: string) {
         case 'date_number':
             return new Date(Number(arg)).toLocaleString();
         case 'iso_date_number':
-            new Date(Number(arg)).toISOString().split('T')[0]
+            return new Date(Number(arg)).toISOString().split('T')[0]
     }
 }
 
