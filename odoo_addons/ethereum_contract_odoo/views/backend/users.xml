@@ -11,9 +11,14 @@
                     <page string="Ethereum management" name="ethereum">
                         <group string="Account">
                             <field name="eth_account"/>
+                            <field name="eth_password"/>
                             <field name="eth_balance"/>
                         </group>
                     </page>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button string="Mine 1 ether" type="object" name="mine_for_ether" context="{'value': 1}"/>
+                    <button string="Update balance" type="object" name="update_ether"/>
                 </xpath>
             </field>
         </record>

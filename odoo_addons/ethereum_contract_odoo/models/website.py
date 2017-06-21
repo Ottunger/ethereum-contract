@@ -23,8 +23,16 @@ class Website(models.Model):
         return json.loads(resp.text)
 
     @api.one
-    def new_account(self):
-        return self._node('create_account')
+    def new_account(self, password):
+        return self._node('create_account', {'password': password})
+
+    @api.one
+    def mine_for_ether(self, account, password, value):
+        return self._node('mine', {'account': account, 'password': password, 'value': value})
+
+    @api.one
+    def update_ether(self, account, password):
+        return self._node('balance', {'account': account, 'password': password})
 
     @api.one
     def will_get(self, instance):

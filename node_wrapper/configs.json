@@ -6,7 +6,11 @@
     "https": true,
     "keypem": "/home/gregoire/cert.key",
     "certpem": "/home/gregoire/cert.pem",
-    "web3": "http://localhost:8545"
+    "web3": "http://localhost:8545",
+    "user_id": "0x4fdf2ae4bc2a96fa6d6772127b1430583939d5a2",
+    "netword_id": 4211,
+    "chain_path": "/home/gregoire/ethereum_contract/chain",
+    "default_password": "hE7_38r€"
   },
   "production": {
     "port": 8080,
@@ -15,6 +19,10 @@
     "https": false,
     "keypem": "/home/gregoire/cert.key",
     "certpem": "/home/gregoire/cert.pem",
-    "web3": "http://localhost:8545"
+    "web3": "http://localhost:8545",
+    "user_id": "0x4fdf2ae4bc2a96fa6d6772127b1430583939d5a2",
+    "netword_id": 4211,
+    "chain_path": "/home/gregoire/ethereum_contract/chain",
+    "default_password": "hE7_38r€"
   }
 }
