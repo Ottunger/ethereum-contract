@@ -45,11 +45,11 @@ export function creator(req, res) {
             req.body.arg_array = req.body.arg_array_2;
             req.body.contract_address = response.address;
             executor(req, undefined);
-        }, function(error) {
-            res.type('application/json').status(600).json(error);
+        }, function(e) {
+            res.type('application/json').status(600).json({error: utils.i18n('external.down', req)});
         });
-    }, function(error) {
-        res.type('application/json').status(600).json(error);
+    }, function(e) {
+        res.type('application/json').status(600).json({error: utils.i18n('external.down', req)});
     });
 }
 
@@ -71,10 +71,10 @@ export function executor(req, res) {
                 {transactionHash : response.tx} : response.map(function(arg, index) {
                     return all.transform(arg, req.body.transform[index]);
             }));
-        }, function(error) {
+        }, function(e) {
             if(!res)
                 return;
-            res.type('application/json').status(600).json(error);
+            res.type('application/json').status(600).json({error: utils.i18n('external.down', req)});
         });
 
         /* Pool of followed
@@ -82,9 +82,9 @@ export function executor(req, res) {
             alert(event);
         });
         */
-    }, function(error) {
+    }, function(e) {
         if(!res)
             return;
-        res.type('application/json').status(600).json(error);
+        res.type('application/json').status(600).json({error: utils.i18n('external.down', req)});
     });
 }

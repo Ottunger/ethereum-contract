@@ -31,8 +31,8 @@ class Website(models.Model):
         return self._node('mine', {'account': account, 'password': password, 'value': value})
 
     @api.one
-    def update_ether(self, account, password):
-        return self._node('balance', {'account': account, 'password': password})
+    def update_ether(self, account):
+        return self._node('balance', {'account': account})
 
     @api.one
     def will_get(self, instance):

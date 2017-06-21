@@ -31,13 +31,13 @@ class User(models.Model):
         if self.env.user.id != 1:
             raise ValidationError('Only superadmin can issue those calls')
         value = context.get('value', 1)
-        self.env['website'].browse(1).mine_for_ether(self.eth_account, self.eth_password, value)
+        self.env['website'].browse(1).mine_for_ether(self.eth_account, self.eth_password, 1000000000 * value)
         return False
 
     @api.one
     def update_ether(self):
         self.ensure_one()
-        resp = self.env['website'].browse(1).update_ether(self.eth_account, self.eth_password)[0][0]
+        resp = self.env['website'].browse(1).update_ether(self.eth_account)[0][0]
         if not 'balance' in resp:
             raise ValidationError('Cannot update, NodeJS down?')
         self.eth_balance = float(resp['balance'])
