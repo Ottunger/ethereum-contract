@@ -33,8 +33,21 @@ export function managerInit(c: any) {
 export function creator(req, res) {
     var will = TC(req.body.contract);
     will.setProvider(all.web3.currentProvider);
-    will.new(...req.body.arg_array).then(function(response) {
-        res.type('application/json').status(200).json(response);
+    will.new(req.body.arg_array[req.body.arg_array.length - 1]).then(function(response) {
+        response.construct(...req.body.arg_array).then(function() {
+            res.type('application/json').status(200).json({
+                address: response.address,
+                transactionHash: response.transactionHash
+            });
+            //Do one more task?
+            if(!req.body.arg_array_2 || !req.body.method)
+                return;
+            req.body.arg_array = req.body.arg_array_2;
+            req.body.contract_address = response.address;
+            executor(req.body).then(console.log, console.err);
+        }, function(error) {
+            res.type('application/json').status(600).json(error);
+        });
     }, function(error) {
         res.type('application/json').status(600).json(error);
     });
@@ -52,10 +65,14 @@ export function executor(req, res) {
     will.setProvider(all.web3.currentProvider);
     will.at(req.body.contract_address).then(function(instance) {
         instance[req.body.method](...req.body.arg_array).then(function(response) {
+            if(!res)
+                return;
             res.type('application/json').status(200).json(response.map(function(arg, index) {
-                all.transform(arg, req.body.transform[index]);
+                return all.transform(arg, req.body.transform[index]);
             }));
         }, function(error) {
+            if(!res)
+                return;
             res.type('application/json').status(600).json(error);
         });
 
@@ -65,6 +82,8 @@ export function executor(req, res) {
         });
         */
     }, function(error) {
+        if(!res)
+            return;
         res.type('application/json').status(600).json(error);
     });
 }

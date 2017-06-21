@@ -23,6 +23,7 @@ odoo.define('ethereum_contract_odoo', function(require) {
                         window.location.reload();
                     });
                     $(this).attr('disabled', 'disabled');
+                    setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 500);
                 });
             } else {
                 //Can propose
@@ -33,14 +34,15 @@ odoo.define('ethereum_contract_odoo', function(require) {
                         arg_array: [
                             new Date($tr.find('input')[0].val()).getTime(),
                             new Date($tr.find('input')[1].val()).getTime(),
-                            $tr.find('input')[2].val(),
-                            $tr.find('input')[3].val()
+                            parseInt($tr.find('input')[2].val()),
+                            parseInt($tr.find('input')[3].val())
                             //Controller will append from account
                         ]
                     }).then(function(data) {
                         window.location.reload();
                     });
                     $(this).attr('disabled', 'disabled');
+                    setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 500);
                 });
             }
         });
@@ -55,19 +57,22 @@ odoo.define('ethereum_contract_odoo', function(require) {
             arg_array: [
                 true,
                 $('#subject').val(),
-                $('#ong').val(),
-                new Date($('#from_date').val()).getTime(),
-                new Date($('#end_date').val()).getTime(),
-                $('#amt_hour').val(),
-                $('#hour_week').val(),
                 0,
                 []
+                //Controller will append from account
+            ],
+            arg_array_2: [
+                new Date($('#from_date').val()).getTime(),
+                new Date($('#end_date').val()).getTime(),
+                parseInt($('#amt_hour').val()),
+                parseInt($('#hour_week').val())
                 //Controller will append from account
             ]
         }).then(function(data) {
             window.location.reload();
         });
         $(this).attr('disabled', 'disabled');
+        setTimeout(function() {$(this).attr('disabled', false);}.bind(this), 500);
     });
 
 });

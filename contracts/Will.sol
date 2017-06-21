@@ -22,6 +22,7 @@ contract Will {
     Config public running;
     Config public pending;
     bool isPending;
+    bool isValidated;
     uint256 lastProposal;
 
     modifier noPending() {
@@ -32,10 +33,21 @@ contract Will {
         if(msg.sender == subject || msg.sender == ong) _;
     }
 
+    modifier creating() {
+        if(!isValidated) _;
+    }
+
+    modifier constructed() {
+        if(isValidated) _;
+    }
+
     //Constructor
-    function Will(bool asSubject, address other, uint256 startDate, uint256 endDate, uint8 amountHour, uint8 hourWeek, uint256 _nSigsReq, address[] _sigs) {
+    function Will() {}
+
+    function construct(bool asSubject, address other, uint256 _nSigsReq, address[] _sigs) creating {
+        isValidated = true;
+
         nSigsReq = _nSigsReq;
-        running = Config(0, 0, 0, 0);
         for(; nSigs < _sigs.length; nSigs++) {
             sigs[nSigs] = _sigs[nSigs];
         }
@@ -49,8 +61,6 @@ contract Will {
             subject = other;
             ong = msg.sender;
         }
-
-        propose(startDate, endDate, amountHour, hourWeek);
     }
 
     function validate() private {
@@ -67,7 +77,7 @@ contract Will {
             hasSig[i] = false;
     }
 
-    function sign() {
+    function sign() constructed {
         uint256 count = 0;
         if(msg.sender == subject)
             subjectSig = true;
@@ -86,7 +96,7 @@ contract Will {
         }
     }
 
-    function propose(uint256 startDate, uint256 endDate, uint8 amountHour, uint8 hourWeek) noPending owner {
+    function propose(uint256 startDate, uint256 endDate, uint8 amountHour, uint8 hourWeek) constructed noPending owner {
         isPending = true;
         lastProposal = now;
         resetSig();

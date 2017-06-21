@@ -20,7 +20,7 @@ class Website(models.Model):
     def _node(self, path, params={}):
         resp = requests.post(url='https://' + self.node_host + ':' + str(self.node_port) + '/api/v1/' + path, data=json.dumps(params), cert=(self.certificate, self.private_key), headers = {'Content-type': 'application/json', 'Accept': 'application/json'}, verify=False)
         resp.raise_for_status()
-        return resp.json()
+        return json.loads(resp.text)
 
     @api.one
     def new_account(self):
@@ -64,13 +64,19 @@ class Website(models.Model):
         })
 
     @api.one
-    def will_new(self, contract, arg_array):
+    def will_new(self, contract, arg_array, arg_array_2):
         arg_array.append({
             'from': self.env.user.eth_account,
             'gas': 20000000
         })
+        arg_array_2.append({
+            'from': self.env.user.eth_account,
+            'gas': 500000
+        })
         return self._node('will/new', {
             'contract': json.loads(contract.value),
-            'arg_array': arg_array
+            'method': 'propose',
+            'arg_array': arg_array,
+            'arg_array_2': arg_array_2
         })
         
