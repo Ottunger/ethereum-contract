@@ -61,7 +61,7 @@ class Website(website.Website):
             'contract_address': instance.addr,
             'method': 'getAllInfo',
             'arg_array': [],
-            'transform': ['number', 'number', 'number', 'number', 'none']
+            'transform': ['number', 'number', 'number', 'number', 'none', 'none']
         })
 
     @api.one

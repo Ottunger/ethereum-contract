@@ -27,7 +27,9 @@ class Belonging(models.Model):
     text = fields.Text('Description')
     state = fields.Selection([
         ('open', 'In edit'),
-        ('running', 'Written')
+        ('running', 'Written'),
+        ('tobuy', 'Validated'),
+        ('bought', 'Bought by Casalta')
     ], 'State', readonly=True, default='open')
     contract_id = fields.Many2one('ethereum.contract.instance', string='Governing contract')
     sha256 = fields.Char('Validation tag', compute='_compute_hash', store=True)
@@ -87,10 +89,19 @@ class Belonging(models.Model):
         self.ensure_one()
         if self.state != 'open':
             raise ValidationError('Can only be called when state is open')
+        distri = 0.0
+        for o in self.owner_ids:
+            distri += o.share
+            if o.share < 0.1:
+                raise ValidationError('A share percentage cannot be negative')
+        if ditri < 99.9 or distri > 100.1:
+            raise ValidationError('The share are not given around 100.0%')
+
         contract = request.env['ethereum.contract'].search([('type', '=', 'split_sell')])
         if len(contract) == 0:
             raise ValidationError('No contract matching type defined')
-        resp = request.env['website'].browse(1).ss_new(contract[0], [
+        website = request.env['website'].browse(1)
+        resp = website.ss_new(contract[0], [
             self.price,
             self.sha256
         ])[0][0]
@@ -103,5 +114,33 @@ class Belonging(models.Model):
                 'contract_id': new_instance_id,
                 'state': 'running' 
             })
+            #Now we distribute the shares, at our expense
+            new_instance = self.env['ethereum.contract.instance'].browse(new_instance_id)
+            for o in owner_ids:
+                website.ss_addAuth(new_instance, [o.share * self.price, o.user_id.eth_account])
         return False
+
+    @api.one
+    def action_reclaim(self):
+        self.ensure_one()
+        if self.state != 'running':
+            raise ValidationError('Can only reclaim during written phase')
+        for o in self.owner_ids:
+            if o.user_id.id == self.env.user.id:
+                resp = website.ss_buyShare(self.contract_id, [
+                    o.share * self.price,
+                    o.user_id.name,
+                    o.user_id.rrn
+                ])[0][0]
+                if resp.get('transactionHash', None) is not None:
+                    resp = website.ss_get(self.contract_id)[0][0]
+                if resp[5] is True:
+                    self.state = 'tobuy'
+
+    @api.one
+    def action_buy(self):
+        self.ensure_one()
+        if self.state != 'tobuy':
+            raise ValidationError('Can only buy if reclaimed')
+        self.state = 'bought'
 

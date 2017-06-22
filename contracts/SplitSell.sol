@@ -142,8 +142,8 @@ contract SplitSell {
         }
     }
 
-    function getAllInfo() constant returns (uint32, uint32, uint256, uint256, address) {
-        return (boughtValue, buyValue, nShares, nAuthed, supervisor);
+    function getAllInfo() constant returns (uint32, uint32, uint256, uint256, address, bool) {
+        return (boughtValue, buyValue, nShares, nAuthed, supervisor, boughtValue >= buyValue);
     }
 
 }
