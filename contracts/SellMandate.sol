@@ -19,6 +19,7 @@ contract SellMandate {
     Config public running;
     Config public pending;
     bool isPending;
+    bool isValidated;
     uint256 lastProposal;
 
     modifier noPending() {
@@ -29,8 +30,20 @@ contract SellMandate {
         if(msg.sender == mandatee || msg.sender == mandater) _;
     }
 
+    modifier creating() {
+        if(!isValidated) _;
+    }
+
+    modifier constructed() {
+        if(isValidated) _;
+    }
+
     //Constructor
-    function SellMandate(bool asMandatee, address other, uint256 startDate, uint256 endDate, bytes32 pdfSha3, uint32 mandateePrice, uint32 buyValue) {
+    function SellMandate() {}
+
+    function construct(bool asMandatee, address other, uint256 startDate, uint256 endDate, bytes32 pdfSha3, uint32 mandateePrice, uint32 buyValue) creating {
+        isValidated = true;
+
         running = Config(0, 0, '', 0, 0);
 
         if(asMandatee) {
@@ -58,7 +71,7 @@ contract SellMandate {
         mandaterSig = false;
     }
 
-    function sign() {
+    function sign() constructed {
         if(msg.sender == mandatee)
             mandateeSig = true;
         if(msg.sender == mandater)
@@ -69,7 +82,7 @@ contract SellMandate {
         }
     }
 
-    function propose(uint256 startDate, uint256 endDate, bytes32 pdfSha3, uint32 mandateePrice, uint32 buyValue) noPending owner {
+    function propose(uint256 startDate, uint256 endDate, bytes32 pdfSha3, uint32 mandateePrice, uint32 buyValue) constructed noPending owner {
         isPending = true;
         lastProposal = now;
         resetSig();

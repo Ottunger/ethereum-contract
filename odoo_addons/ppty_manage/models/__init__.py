@@ -5,3 +5,4 @@ from . import timeslot
 from . import offer
 from . import owning
 from . import website
+from . import users

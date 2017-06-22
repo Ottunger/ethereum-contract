@@ -21,6 +21,7 @@ contract SplitSell {
     mapping(uint256 => Auth) authed;
     uint256 nAuthed;
     address public supervisor;
+    bool isValidated;
 
     modifier noBought() {
         if(boughtValue < buyValue) _;
@@ -30,13 +31,25 @@ contract SplitSell {
         if(supervisor == msg.sender) _;
     }
 
+    modifier creating() {
+        if(!isValidated) _;
+    }
+
+    modifier constructed() {
+        if(isValidated) _;
+    }
+
     //Constructor
-    function SplitSell(uint32 _buyValue) {
+    function SplitSell() {}
+
+    function construct(uint32 _buyValue) creating {
+        isValidated = true;
+
         buyValue = _buyValue;
         supervisor = msg.sender;
     }
 
-    function addAuth(uint32 buyValue, address owner) supervises {
+    function addAuth(uint32 buyValue, address owner) constructed supervises {
         for(uint256 i = 0; i < nAuthed; i++) {
             if(authed[i].owner == owner) {
                 authed[i].buyValue += buyValue;
@@ -60,7 +73,7 @@ contract SplitSell {
         nShares--;
     }
 
-    function removeAuth(uint32 buyValue, address owner) supervises {
+    function removeAuth(uint32 buyValue, address owner) constructed supervises {
         for(uint256 i = 0; i < nAuthed; i++) {
             if(authed[i].owner == owner) {
                 authed[i].buyValue -= buyValue;
@@ -72,11 +85,11 @@ contract SplitSell {
         }
     }
 
-    function setSupervisor(address now) supervises {
+    function setSupervisor(address now) constructed supervises {
         supervisor = now;
     }
 
-    function buyShare(uint32 buyingValue, bytes32 ownerName, bytes32 ownerRRN) noBought {
+    function buyShare(uint32 buyingValue, bytes32 ownerName, bytes32 ownerRRN) constructed noBought {
         for(uint256 i = 0; i < nAuthed; i++) {
             if(authed[i].owner == msg.sender) {
                 uint32 spending = buyingValue > authed[i].buyValue? authed[i].buyValue : buyingValue;
@@ -104,7 +117,7 @@ contract SplitSell {
         }
     }
 
-    function sellShare(uint32 sellingValue, address to, bytes32 toName, bytes32 toRRN) {
+    function sellShare(uint32 sellingValue, address to, bytes32 toName, bytes32 toRRN) constructed {
         for(uint256 i = 0; i < nShares; i++) {
             if(shares[i].owner == msg.sender) {
                 uint32 spending = sellingValue > shares[i].buyValue? shares[i].buyValue : sellingValue;
@@ -126,4 +139,9 @@ contract SplitSell {
             }
         }
     }
+
+    function getAllInfo() constant returns (uint32, uint32, uint256, uint256, address) {
+        return (boughtValue, buyValue, nShares, nAuthed, supervisor);
+    }
+
 }

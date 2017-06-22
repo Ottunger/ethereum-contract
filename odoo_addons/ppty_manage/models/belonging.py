@@ -3,6 +3,22 @@ from odoo.exceptions import ValidationError
 import hashlib
 
 
+CATEGORIES = [
+    ('A1', 'Flat'),
+    ('ST', 'Studio'),
+    ('IR', 'Building'),
+    ('COP', 'Coprop'),
+    ('DX', 'Duplex'),
+    ('M4', 'Isolated house'),
+    ('M1+1', 'Twin house'),
+    ('M2', 'Lined house'),
+    ('CH1', 'Single room'),
+    ('ENT', 'Deposit'),
+    ('EMP', 'Free spot'),
+    ('TR', 'Raw land')
+]
+
+
 class Belonging(models.Model):
     _name = 'casalta.belonging'
 
@@ -11,20 +27,7 @@ class Belonging(models.Model):
     text = fields.Text('Description')
     contract_id = fields.Many2one('ethereum.contract.instance', string='Governing contract')
     sha256 = fields.Char('Validation tag', compute='_compute_hash', store=True)
-    categ = fields.Selection([
-        ('A1', 'Flat'),
-        ('ST', 'Studio'),
-        ('IR', 'Building'),
-        ('COP', 'Coprop'),
-        ('DX', 'Duplex'),
-        ('M4', 'Isolated house'),
-        ('M1+1', 'Twin house'),
-        ('M2', 'Lined house'),
-        ('CH1', 'Single room'),
-        ('ENT', 'Deposit'),
-        ('EMP', 'Free spot'),
-        ('TR', 'Raw land')
-    ], 'Category')
+    categ = fields.Selection(CATEGORIES, 'Category')
     offer = fields.Selection([
         ('buy', 'To buy'),
         ('rent', 'To rent'),
