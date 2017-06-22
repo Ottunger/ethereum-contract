@@ -23,7 +23,7 @@ class Belonging(models.Model):
     _name = 'casalta.belonging'
 
     name = fields.Char('Common name')
-    ref = fieldsChar('Internal reference')
+    ref = fields.Char('Internal reference')
     text = fields.Text('Description')
     contract_id = fields.Many2one('ethereum.contract.instance', string='Governing contract')
     sha256 = fields.Char('Validation tag', compute='_compute_hash', store=True)
@@ -54,14 +54,14 @@ class Belonging(models.Model):
     owner_ids = fields.One2many('casalta.owning', 'belonging_id', string='Owners')
     customer_ids = fields.One2many('casalta.owning', 'belonging_id', string='Interested people')
 
-    @api.depends('categ', 'superficy', 'partner_id.street', 'partner_id.city', 'partner_id.country')
+    @api.depends('categ', 'superficy', 'partner_id.street', 'partner_id.city', 'partner_id.country_id')
     def _compute_hash(self):
         for b in self:
             h = hashlib.sha256()
-            h.update(b.categ)
-            h.update(b.superficy)
-            h.update(b.partner_id.street)
-            h.update(b.partner_id.city)
-            h.update(b.partner_id.country)
+            h.update(str(b.categ))
+            h.update(str(b.superficy))
+            h.update(str(b.partner_id.street))
+            h.update(str(b.partner_id.city))
+            h.update(str(b.partner_id.country_id.name))
             b.sha256 = h.hexdigest()
 

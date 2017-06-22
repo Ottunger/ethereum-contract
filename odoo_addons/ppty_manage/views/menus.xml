@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="listing_bel_action">
+            <field name="name">Listing Belongings</field>
+            <field name="res_model">casalta.belonging</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="listing_photos_action">
+            <field name="name">Listing Photos</field>
+            <field name="res_model">casalta.photo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="listing_offers_action">
+            <field name="name">Listing Offers</field>
+            <field name="res_model">casalta.offer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="listing_ow_action">
+            <field name="name">Listing Ownings</field>
+            <field name="res_model">casalta.owning</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="listing_ts_action">
+            <field name="name">Listing Timeslots</field>
+            <field name="res_model">casalta.timeslot</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- top menu item -->
+        <menuitem name="Property management" id="ppty_manage"/>
+        <!-- menu categories -->
+        <menuitem name="Offers" id="offers" parent="ppty_manage"/>
+        <menuitem name="Mandates" id="mandates" parent="ppty_manage"/>
+        <menuitem name="Configuration" id="config" parent="ppty_manage"/>
+        <!-- actions -->
+        <menuitem name="Listing belongings" id="listing_bel" parent="offers"
+                  action="listing_bel_action"/>
+        <menuitem name="Listing photos" id="listing_photos" parent="offers"
+                  action="listing_photos_action"/>
+        <menuitem name="Listing offers" id="listing_offers" parent="mandates"
+                  action="listing_offers_action"/>
+        <menuitem name="Listing ownings" id="listing_ow" parent="mandates"
+                  action="listing_ow_action"/>
+        <menuitem name="Listing timeslots" id="listing_ts" parent="config"
+                  action="listing_ts_action"/>
+
+    </data>
+</odoo>
