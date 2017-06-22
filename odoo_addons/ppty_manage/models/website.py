@@ -85,9 +85,9 @@ class Website(website.Website):
         })
 
     @api.one
-    def sm_addAuth(self, instance, arg_array):
+    def ss_addAuth(self, instance, arg_array):
         arg_array.append({
-            'from': self.env.user.eth_account,
+            'from': self.eth_account,
             'gas': 500000
         })
         return self._node('executor/execute', {
@@ -99,21 +99,7 @@ class Website(website.Website):
         })
 
     @api.one
-    def sm_setSupervisor(self, instance, arg_array):
-        arg_array.append({
-            'from': self.env.user.eth_account,
-            'gas': 500000
-        })
-        return self._node('executor/execute', {
-            'contract': json.loads(instance.contract_id.value),
-            'contract_address': instance.addr,
-            'method': 'setSupervisor',
-            'arg_array': arg_array,
-            'transform': []
-        })
-
-    @api.one
-    def sm_buyShare(self, instance, arg_array):
+    def ss_buyShare(self, instance, arg_array):
         arg_array.append({
             'from': self.env.user.eth_account,
             'gas': 500000
@@ -127,7 +113,7 @@ class Website(website.Website):
         })
 
     @api.one
-    def sm_sellShare(self, instance, arg_array):
+    def ss_sellShare(self, instance, arg_array):
         arg_array.append({
             'from': self.env.user.eth_account,
             'gas': 500000
@@ -141,9 +127,9 @@ class Website(website.Website):
         })
 
     @api.one
-    def sm_new(self, contract, arg_array):
+    def ss_new(self, contract, arg_array):
         arg_array.append({
-            'from': self.env.user.eth_account,
+            'from': self.eth_account,
             'gas': 20000000
         })
         return self._node('executor/new', {

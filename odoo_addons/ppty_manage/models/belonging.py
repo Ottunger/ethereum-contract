@@ -25,6 +25,10 @@ class Belonging(models.Model):
     name = fields.Char('Common name')
     ref = fields.Char('Internal reference')
     text = fields.Text('Description')
+    state = fields.Selection([
+        ('open', 'In edit'),
+        ('running', 'Written')
+    ], 'State', readonly=True, default='open')
     contract_id = fields.Many2one('ethereum.contract.instance', string='Governing contract')
     sha256 = fields.Char('Validation tag', compute='_compute_hash', store=True)
     categ = fields.Selection(CATEGORIES, 'Category')
@@ -44,7 +48,11 @@ class Belonging(models.Model):
         ('high', 'Nice')
     ], string='State')
     superficy = fields.Float('Superficy in square meters')
-    partner_id = fields.Many2one('res.partner', string='Address')
+    street = fields.Char('Street line 1')
+    street2 = fields.Char('Street line 2')
+    zipcode = fields.Char('Zip code')
+    city = fields.Char('City')
+    country_id = fields.Many2one('res.country', string='Country')
     visit_ids = fields.Many2many('casalta.timeslot', string='Possible visits')
     offer_id = fields.Many2one('casalta.offer', string='Governing offer')
     date_in = fields.Date('Availability date')
@@ -54,14 +62,46 @@ class Belonging(models.Model):
     owner_ids = fields.One2many('casalta.owning', 'belonging_id', string='Owners')
     customer_ids = fields.One2many('casalta.owning', 'belonging_id', string='Interested people')
 
-    @api.depends('categ', 'superficy', 'partner_id.street', 'partner_id.city', 'partner_id.country_id')
+    @api.multi
+    def write(self, vals):
+        if self.state != 'open' or (self.contract_id and self.contract_id.state != 'open'):
+            if vals.get('categ', False) or vals.get('superficy', False) or vals.get('street', False) or vals.get('street2', False) or vals.get('zipcode', False) or vals.get('city', False) or vals.get('country_id', False):
+                raise ValidationError('Cannot modify signed values after agreement')
+        return super(Offer, self).write(vals)
+
+    @api.depends('categ', 'superficy', 'street', 'street2', 'zipcode', 'city', 'country_id')
     def _compute_hash(self):
         for b in self:
             h = hashlib.sha256()
             h.update(str(b.categ))
             h.update(str(b.superficy))
-            h.update(str(b.partner_id.street))
-            h.update(str(b.partner_id.city))
-            h.update(str(b.partner_id.country_id.name))
+            h.update(str(b.street))
+            h.update(str(b.street2))
+            h.update(str(b.zipcode))
+            h.update(str(b.city))
+            h.update(str(b.country_id.name))
             b.sha256 = h.hexdigest()
+
+    @api.one
+    def action_pending(self):
+        self.ensure_one()
+        if self.state != 'open':
+            raise ValidationError('Can only be called when state is open')
+        contract = request.env['ethereum.contract'].search([('type', '=', 'split_sell')])
+        if len(contract) == 0:
+            raise ValidationError('No contract matching type defined')
+        resp = request.env['website'].browse(1).ss_new(contract[0], [
+            self.price,
+            self.sha256
+        ])[0][0]
+        if resp.get('address', None) is not None:
+            new_instance_id = request.env['ethereum.contract.instance'].create({
+                'contract_id': contract.id,
+                'addr': resp['address']
+            })
+            self.write({
+                'contract_id': new_instance_id,
+                'state': 'running' 
+            })
+        return False
 

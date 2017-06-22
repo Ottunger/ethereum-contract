@@ -15,3 +15,10 @@ class Photo(models.Model):
         if self.belonging_id and self.offer_id:
             raise ValidationError('Cannot be attached twice.')
 
+    @api.multi
+    def write(self, vals):
+        if self.offer_id:
+            if vals.get('contained', False):
+                raise ValidationError('Cannot modify signed values after agreement')
+        return super(Photo, self).write(vals)
+

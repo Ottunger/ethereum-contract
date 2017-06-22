@@ -22,6 +22,13 @@ class Offer(models.Model):
     date_to = fields.Date('Mandated to')
     attachment_ids = fields.One2many('casalta.photo', 'offer_id', string='Attachments')
 
+    @api.multi
+    def write(self, vals):
+        if self.state != 'open':
+            if vals.get('belonging_ids', False) or vals.get('date_from', False) or vals.get('date_to', False) or vals.get('attachment_ids', False) or vals.get('price', False):
+                raise ValidationError('Cannot modify signed values after agreement')
+        return super(Offer, self).write(vals)
+
     @api.depends('belonging_ids', 'date_from', 'date_to', 'attachment_ids', 'price')
     def _compute_hash(self):
         for o in self:
@@ -56,7 +63,7 @@ class Offer(models.Model):
             self.sha256,
             self.price,
             self.contract_value
-        ], [])[0][0]
+        ])[0][0]
         if resp.get('address', None) is not None:
             new_instance_id = request.env['ethereum.contract.instance'].create({
                 'contract_id': contract.id,
@@ -68,5 +75,16 @@ class Offer(models.Model):
             })
         return False
 
-            
+    @api.one
+    def action_sign(self):
+        self.ensure_one()
+        if state != 'pending':
+            raise ValidationError('This contract must be written before signing')
+        website = request.env['website'].browse(1)
+        resp = website.sm_sign(self.contract_id)[0][0]
+        if resp.get('transactionHash', None) is not None:
+            resp = website.sm_get(self.contract_id)[0][0]
+            if resp[10] is False:
+                self.state = 'signed'
+        return False
 

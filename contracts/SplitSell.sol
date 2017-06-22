@@ -21,6 +21,7 @@ contract SplitSell {
     mapping(uint256 => Auth) authed;
     uint256 nAuthed;
     address public supervisor;
+    bytes32 desigHash;
     bool isValidated;
 
     modifier noBought() {
@@ -42,10 +43,11 @@ contract SplitSell {
     //Constructor
     function SplitSell() {}
 
-    function construct(uint32 _buyValue) creating {
+    function construct(uint32 _buyValue, bytes32 _desigHash) creating {
         isValidated = true;
 
         buyValue = _buyValue;
+        desigHash = _desigHash;
         supervisor = msg.sender;
     }
 
