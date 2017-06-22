@@ -1,5 +1,6 @@
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import ValidationError
 import random, string
 
 
@@ -23,8 +24,10 @@ class ExkiDeliveryAccount(http.Controller):
 
     @http.route('/will/new', type='json', auth="user", methods=['POST'], website=True, csrf=False)
     def new(self, arg_array, arg_array_2, **post):
-        contract = request.env['ethereum.contract'].search([('type', '=', 'will')])[0]
-        resp = request.env['website'].browse(1).will_new(contract, arg_array, arg_array_2)[0][0]
+        contract = request.env['ethereum.contract'].search([('type', '=', 'will')])
+        if len(contract) == 0:
+            raise ValidationError('No contract matching type defined')
+        resp = request.env['website'].browse(1).will_new(contract[0], arg_array, arg_array_2)[0][0]
         if resp.get('address', None) is not None:
             request.env['ethereum.contract.instance'].create({
                 'contract_id': contract.id,

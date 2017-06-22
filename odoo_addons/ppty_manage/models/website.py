@@ -44,20 +44,14 @@ class Website(website.Website):
         })
 
     @api.one
-    def sm_new(self, contract, arg_array, arg_array_2):
+    def sm_new(self, contract, arg_array):
         arg_array.append({
             'from': self.env.user.eth_account,
             'gas': 20000000
         })
-        arg_array_2.append({
-            'from': self.env.user.eth_account,
-            'gas': 500000
-        })
         return self._node('executor/new', {
             'contract': json.loads(contract.value),
-            'method': 'propose',
-            'arg_array': arg_array,
-            'arg_array_2': arg_array_2
+            'arg_array': arg_array
         })
 
     @api.one
