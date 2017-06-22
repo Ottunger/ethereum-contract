@@ -10,6 +10,7 @@ class Offer(models.Model):
     sha256 = fields.Char('Validation tag', compute='_compute_hash', store=True)
     contract_value = fields.Float('Underlying value', compute='_compute_hash', store=True)
     belonging_ids = fields.One2many('casalta.belonging', 'offer_id', string='Offers')
+    partner_id = fields.Many2one('res.users', string='Bound merchant')
     user_id = fields.Many2one('res.users', string='Responsible vendor')
     price = fields.Float('Price for processing offer')
     state = fields.Selection([

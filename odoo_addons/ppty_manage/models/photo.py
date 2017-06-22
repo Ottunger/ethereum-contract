@@ -8,6 +8,7 @@ class Photo(models.Model):
     belonging_id = fields.Many2one('casalta.belonging', string='Belonging')
     offer_id = fields.Many2one('casalta.offer', string='Offer')
     contained = fields.Binary('File', attachment=True)
+    is_picture = fields.Boolean('Picture rather than contract?')
 
     @api.one
     @api.constrains('belonging_id', 'offer_id')

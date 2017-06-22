@@ -46,7 +46,7 @@ class Website(website.Website):
     @api.one
     def sm_new(self, contract, arg_array):
         arg_array.append({
-            'from': self.env.user.eth_account,
+            'from': contract.partner_id.eth_account,
             'gas': 20000000
         })
         return self._node('executor/new', {

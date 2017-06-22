@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="offer_form_view">
+            <field name="name">offer_form_view</field>
+            <field name="model">casalta.offer</field>
+            <field name="arch" type="xml">
+                <form string="Offer">
+                    <header>
+                        <button name="action_pending" type="object" string="Validate" states="open" groups="ppty_manage.group_casalta"/>
+                        <button name="action_reclaim" type="object" string="Sign" class="btn-primary" states="pending"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="partner_id" placeholder="Bound partner..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="state"/>
+                            <field name="contract_value"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <group string="General information">
+                                        <field name="belonging_ids"/>
+                                    </group>
+                                    <group string="Details">
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                        <field name="user_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Cost">
+                                <group string="Cost">
+                                    <field name="price"/>
+                                    <field name="attachment_ids"/>
+                                </group>
+                            </page>
+                            <page string="Ethereum">
+                                <group string="Ethereum">
+                                    <field name="sha256"/>
+                                    <field name="contract_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

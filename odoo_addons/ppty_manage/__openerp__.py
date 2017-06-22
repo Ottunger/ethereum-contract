@@ -11,6 +11,8 @@ Allows for property management in backend
     'data': [
         'views/menus.xml',
         'views/users.xml',
+        'views/belonging.xml',
+        'views/offer.xml',
         'security/groups.xml',
         'security/ir.model.access.csv'
     ],

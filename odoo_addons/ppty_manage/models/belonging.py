@@ -44,7 +44,7 @@ class Belonging(models.Model):
     loc_charges = fields.Float('Amount for charges')
     loc_furnished = fields.Boolean('With furnitures')
     peb = fields.Char('PEB description')
-    state = fields.Selection([
+    status = fields.Selection([
         ('bad', 'To restore'),
         ('medium', 'Correct'),
         ('high', 'Nice')
@@ -61,6 +61,7 @@ class Belonging(models.Model):
     date_give = fields.Date('Giving out date')
     tax_price = fields.Float('Cadastral price')
     photo_ids = fields.One2many('casalta.photo', 'belonging_id', string='Photos')
+    attachment_ids = fields.One2many('casalta.photo', 'belonging_id', string='Attachments')
     owner_ids = fields.One2many('casalta.owning', 'belonging_id', string='Owners')
     customer_ids = fields.One2many('casalta.owning', 'belonging_id', string='Interested people')
 
