@@ -1,1 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+a_bel,bel,ppty_manage.model_casalta_belonging,,1,0,0,0
+a_bel_e,bel_e,ppty_manage.model_casalta_belonging,ppty_manage.group_casalta,1,1,1,1
+a_off,off,ppty_manage.model_casalta_offer,,1,0,0,0
+a_off_e,off_e,ppty_manage.model_casalta_offer,ppty_manage.group_casalta,1,1,1,1
+a_owning,owning,ppty_manage.model_casalta_owning,,1,0,0,0
+a_owning_e,owning_e,ppty_manage.model_casalta_owning,ppty_manage.group_casalta,1,1,1,1
+a_photo,photo,ppty_manage.model_casalta_photo,,1,0,0,0
+a_photo_e,photo_e,ppty_manage.model_casalta_photo,ppty_manage.group_casalta,1,1,1,1
+a_ts,ts,ppty_manage.model_casalta_timeslot,,1,0,0,0
+a_ts_e,ts_e,ppty_manage.model_casalta_timeslot,ppty_manage.group_casalta,1,1,1,1

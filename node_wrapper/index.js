@@ -15,7 +15,7 @@ var pki = require('node-forge').pki;
 
 var utils = require('./utils');
 var all = require('./all');
-var will = require('./will');
+var executor = require('./executor');
 var rpem;
 
 //Set the running configuration
@@ -37,7 +37,7 @@ if(utils.DEBUG)
 function connect(callback) {
     rpem = pki.certificateFromPem(fs.readFileSync(__dirname + '/ca-cert.pem'));
     all.managerInit(config);
-    will.managerInit(config);
+    executor.managerInit(config);
     utils.prepareRL();
     callback(false);
 }
@@ -131,20 +131,20 @@ connect(function(e) {
     app.post('/api/v:version/create_account', pauth);
     app.post('/api/v:version/mine', pauth);
     app.post('/api/v:version/balance', pauth);
-    app.post('/api/v:version/will/new', pauth);
-    app.post('/api/v:version/will/execute', pauth);
+    app.post('/api/v:version/executor/new', pauth);
+    app.post('/api/v:version/executor/execute', pauth);
     //API POST CHECKS
     app.post('/api/v:version/create_account', utils.checkBody([]));
     app.post('/api/v:version/mine', utils.checkBody(['account', 'password', 'value']));
     app.post('/api/v:version/balance', utils.checkBody(['account']));
-    app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'arg_array']));
-    app.post('/api/v:version/will/execute', utils.checkBody(['contract', 'contract_address', 'method', 'arg_array', 'transform']));
+    app.post('/api/v:version/executor/execute', utils.checkBody(['contract', 'arg_array']));
+    app.post('/api/v:version/executor/execute', utils.checkBody(['contract', 'contract_address', 'method', 'arg_array', 'transform']));
     //API ROUTES
     app.post('/api/v:version/create_account', all.createAccount);
     app.post('/api/v:version/mine', all.mine);
     app.post('/api/v:version/balance', all.balance);
-    app.post('/api/v:version/will/new', will.creator);
-    app.post('/api/v:version/will/execute', will.executor);
+    app.post('/api/v:version/executor/new', executor.creator);
+    app.post('/api/v:version/executor/execute', executor.executor);
 
     //Error route
     app.use(function(req, res) {

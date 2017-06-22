@@ -1,38 +1,10 @@
 from odoo import models, fields, api
 from odoo.exceptions import AccessError
-import os, json, requests
+from odoo.addons.ethereum_contract_odoo.models import website
 
 
-class Website(models.Model):
+class Website(website.Website):
     _inherit = 'website'
-
-    eth_account = fields.Char('Ether account')
-    node_host = fields.Char('NodeJS Host')
-    node_port = fields.Char('NodeJS Port')
-    private_key = fields.Char('Path to private key for auth')
-    certificate = fields.Char('Path to certificate for auth')
-
-    @api.one
-    def run_node(self):
-        os.popen('nohup node ' + os.path.abspath(__file__) + '/../../node_wrapper/index.js &')
-
-    @api.one
-    def _node(self, path, params={}):
-        resp = requests.post(url='https://' + self.node_host + ':' + str(self.node_port) + '/api/v1/' + path, data=json.dumps(params), cert=(self.certificate, self.private_key), headers = {'Content-type': 'application/json', 'Accept': 'application/json'}, verify=False)
-        resp.raise_for_status()
-        return json.loads(resp.text)
-
-    @api.one
-    def new_account(self, password):
-        return self._node('create_account', {'password': password})
-
-    @api.one
-    def mine_for_ether(self, account, password, value):
-        return self._node('mine', {'account': account, 'password': password, 'value': value})
-
-    @api.one
-    def update_ether(self, account):
-        return self._node('balance', {'account': account})
 
     @api.one
     def will_get(self, instance):

@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build_will": "node_modules/.bin/tsc --removeComments will.ts && echo ok || echo not ok",
-    "build_all": "node_modules/.bin/tsc --removeComments all.ts && echo ok || echo not ok",
-    "build_utils": "node_modules/.bin/tsc --removeComments utils.ts && echo ok || echo not ok",
-    "build_miner": "node_modules/.bin/tsc --removeComments Miner.ts && echo ok || echo not ok",
-    "build": "npm run build_will && npm run build_all && npm run build_utils && npm run build_miner",
+    "build": "node_modules/.bin/tsc --removeComments *.ts && echo ok || echo not ok",
     "debug": "node index.js localhost",
     "production": "node index.js production"
   },

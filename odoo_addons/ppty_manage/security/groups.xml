@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="category_group">
+            <field name="name">Property managers</field>
+            <field name="description">People that are allowed to manager properties</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="group_casalta" model="res.groups">
+            <field name="name">Property managers</field>
+            <field name="category_id" ref="ppty_manage.category_group"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+    </data>
+</odoo>

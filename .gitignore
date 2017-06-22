@@ -5,7 +5,7 @@ build
 **/*.abi
 **/*.bin
 
-node_wrapper/will.js
+node_wrapper/executor.js
 node_wrapper/all.js
 node_wrapper/utils.js
 node_wrapper/Miner.js

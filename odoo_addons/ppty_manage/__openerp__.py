@@ -9,7 +9,8 @@ Allows for property management in backend
     'website': "https://mateitright.be/",
     'depends': ['ethereum_contract_odoo'],
     'data': [
-        'security/ir.model.access.csv'
+        'security/groups.xml',
+        #'security/ir.model.access.csv'
     ],
     'installable': True,
     'application': False,

@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 
 class Product(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
 
     worth_ether = fields.Float('Ether worth for buying it', default=0.0)
 
