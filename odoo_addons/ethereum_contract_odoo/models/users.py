@@ -22,7 +22,7 @@ class User(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'eth_password' in vals:
+        if 'eth_password' in vals and self.eth_password:
             del vals['eth_password']
         return super(User, self).write(vals)
 
