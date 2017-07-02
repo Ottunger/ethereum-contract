@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <template id="eth_assets_frontend" inherit_id="website.assets_frontend" name="assets frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript">
+                    odoo.google_maps_api_key = '<t t-raw="request.website.gmap_api_key"/>';
+                </script>
+                <script type="text/javascript" src="/ppty_manage/static/js/gmap_clusterer.js"/>
+                <script type="text/javascript" src="/ppty_manage/static/js/ppty.js"/>
+            </xpath>
+        </template>
+
+        <template id="eth_snippets" inherit_id="website.snippets" name="PPTY snippets bar">
+            <xpath expr="//div[@id='snippet_feature']/div[@class='o_panel_body']" position="inside">
+                <t t-snippet="ppty_manage.snippet_app_ppty"
+                   t-thumbnail="/ethereum_contract_odoo/static/images/snippet.png"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

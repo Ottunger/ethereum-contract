@@ -9,11 +9,14 @@ Allows for property management in backend
     'website': "https://mateitright.be/",
     'depends': ['ethereum_contract_odoo'],
     'data': [
-        'views/menus.xml',
-        'views/users.xml',
-        'views/belonging.xml',
-        'views/offer.xml',
-        'views/website.xml',
+        'views/backend/menus.xml',
+        'views/backend/users.xml',
+        'views/backend/belonging.xml',
+        'views/backend/offer.xml',
+        'views/backend/website.xml',
+
+        'views/frontend/assets.xml',
+        'views/frontend/snippets_ppty.xml',
 
         'security/groups.xml',
         'security/ir.model.access.csv'

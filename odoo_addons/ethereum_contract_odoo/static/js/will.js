@@ -7,6 +7,10 @@ odoo.define('ethereum_contract_odoo', function(require) {
     var core = require('web.core');
     var _t = core._t;
 
+    //Only if snippet is there
+    if(!$('.snippet_app_will').length)
+        return;
+
     for(var i = 0; i < odoo.ethereum_contracts_types.length; i++) {
         if(odoo.ethereum_contracts_types[i] != 'will')
             continue;

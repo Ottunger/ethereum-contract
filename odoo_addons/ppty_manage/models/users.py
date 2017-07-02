@@ -27,10 +27,9 @@ class User(models.Model):
         })
 
         resp = self.env['website'].browse(1).cs_ws_new_account(vals.get('eth_account', False), vals['cs_pub_key'])[0][0]
-        if not 'certificate' in resp:
-            raise ValidationError('Cannot create account, CS WS down?')
-        vals.update({
-            'cs_cert': resp['certificate']
-        })
+        if 'certificate' in resp:
+            vals.update({
+                'cs_cert': resp['certificate']
+            })
         return super(User, self).create(vals)
 
