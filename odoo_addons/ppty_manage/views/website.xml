@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="website_config">
+            <field name="name">website_config</field>
+            <field name="model">website</field>
+            <field name="inherit_id" ref="website.view_website_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='eth_group']" position="inside">
+                    <field name="cs_ws_url"/>
+                    <field name="gmap_api_key"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

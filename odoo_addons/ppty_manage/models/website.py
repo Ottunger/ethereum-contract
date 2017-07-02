@@ -1,10 +1,39 @@
 from odoo import models, fields, api
 from odoo.exceptions import AccessError
 from odoo.addons.ethereum_contract_odoo.models import website
+import simplejson as json
+import requests
 
 
 class Website(website.Website):
     _inherit = 'website'
+
+    cs_ws_url = fields.Char('Casalta WS URL')
+    gmap_api_key = fields.Char('Google maps API key')
+
+    @api.one
+    def _ws(self, path, params={}, cert=False):
+        resp = requests.post(url=self.cs_ws_url + '/' + path,
+                             data=json.dumps(params), cert=cert,
+                             headers={'Content-type': 'application/json', 'Accept': 'application/json'}, verify=False)
+        resp.raise_for_status()
+        return json.loads(resp.text)
+
+    @api.one
+    def cs_ws_new_account(self, eth_account, pub_key):
+        return self._ws('Account/Create', {
+            'account': eth_account,
+            'pub_key': pub_key
+        }, False)
+
+    @api.one
+    def cs_ws_list(self, point_from, point_to, user_id):
+        return self._ws('Points/getPointsIn', {
+            'lat1': point_from[0],
+            'lon1': point_from[1],
+            'lat2': point_to[0],
+            'lon2': point_to[1]
+        }, cert=(user_id.cs_cert, user_id.cs_priv_key))
 
     @api.one
     def sm_get(self, instance):

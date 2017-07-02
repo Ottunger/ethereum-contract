@@ -9,6 +9,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='access_rights']" position="before">
                     <page string="Property management" name="ppty">
+                        <group string="CS WebSerice">
+                            <field name="cs_priv_key"/>
+                            <field name="cs_pub_key"/>
+                            <field name="cs_cert"/>
+                        </group>
                         <group string="Property management">
                             <field name="rrn"/>
                             <field name="req_categ"/>

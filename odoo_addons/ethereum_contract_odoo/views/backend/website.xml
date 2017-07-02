@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="website.view_website_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
-                    <group string="Ethereum configuration">
+                    <group string="Ethereum configuration" name="eth_group">
                         <field name="eth_account"/>
                         <field name="node_host"/>
                         <field name="node_port"/>

@@ -13,6 +13,8 @@ Allows for property management in backend
         'views/users.xml',
         'views/belonging.xml',
         'views/offer.xml',
+        'views/website.xml',
+
         'security/groups.xml',
         'security/ir.model.access.csv'
     ],
