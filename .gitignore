@@ -4,6 +4,7 @@ build
 
 **/*.abi
 **/*.bin
+**/*-lock.json
 
 node_wrapper/executor.js
 node_wrapper/all.js
